@@ -1,0 +1,31 @@
+package org.anitab.spring.home_sweet_hunt.services;
+
+import org.anitab.spring.home_sweet_hunt.models.MVPApartment;
+import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.List;
+
+@Service
+public class ApartmentService {
+
+    private final List<MVPApartment> apartments = new ArrayList<>();
+    private int nextId = 1;
+
+    public MVPApartment save(
+            int bedrooms, double bathrooms, int price, String address) {
+
+        // Temporary: address is not saved yet
+        MVPApartment apartment =
+            new MVPApartment(bedrooms, bathrooms, price, null);
+
+        apartment.setApartmentId(nextId++);
+        apartments.add(apartment);
+
+        return apartment;
+    }
+
+    public List<MVPApartment> getAllApartments() {
+        return new ArrayList<>(apartments);
+    }
+}
